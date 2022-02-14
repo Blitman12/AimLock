@@ -35,6 +35,7 @@ const typeDefs = gql`
         deleteUser(_id: ID!): User
         addGame(gameName: String!, mouseDPI: String!, mouseSensitivity: String!): Game
         removeGame(gameId: ID!, userId: ID!): Game
+        updateGame(gameId: ID!, mouseDPI: String, mouseSensitivity: String, userId: ID!): Game
     }
 `
 

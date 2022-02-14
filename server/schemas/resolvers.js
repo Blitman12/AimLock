@@ -87,6 +87,17 @@ const resolvers = {
                 return Game.findByIdAndDelete(gameId)
             }
             throw new AuthenticationError('You need to be logged in!');
+        },
+
+        updateGame: async (_, {gameId, mouseDPI, mouseSensitivity, userId}, context) => {
+            if (context.user._id === userId) {
+                const game = Game.findById(gameId)
+                if (!game) {
+                    throw new AuthenticationError('No game found with this ID')
+                }
+                return Game.findByIdAndUpdate(gameId, {mouseDPI, mouseSensitivity}, {new: true})
+            }
+            throw new AuthenticationError('You need to be logged in!');
         }
     }
 }
