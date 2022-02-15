@@ -7,6 +7,7 @@ import {
 } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import { makeStyles } from '@mui/styles';
 import Header from './components/Header'
 import Login from './pages/Login';
 import Home from './pages/Home'
@@ -34,20 +35,31 @@ const client = new ApolloClient({
   cache: new InMemoryCache()
 })
 
+const useStyles = makeStyles({
+  background: {
+    height: '100vh',
+    backgroundColor: "#af8c9d",
+    backgroundImage: "linear-gradient(315deg, #af8c9d 0%, #8cacac 74%)"
+  }
+})
+
 function App() {
+  const classes = useStyles()
   return (
     <ApolloProvider client={client}>
-      <Router>
-        <Header />
-        <Switch>
-          <Route exact path="/" component={Home} />
-          <Route exact path="/login" component={Login} />
-          <Route exact path="/signup" component={Signup} />
-          <Route exact path="/profile" component={Profile}/>
-          <Route exact path="/addGame" component={AddGame}/>
-          <Route exact path="/singleGame" component={SingleGame} />
-        </Switch>
-      </Router>
+      <div className={classes.background}>
+        <Router>
+          <Header />
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route exact path="/login" component={Login} />
+            <Route exact path="/signup" component={Signup} />
+            <Route exact path="/profile" component={Profile} />
+            <Route exact path="/addGame" component={AddGame} />
+            <Route exact path="/singleGame" component={SingleGame} />
+          </Switch>
+        </Router>
+      </div>
     </ApolloProvider>
   );
 }

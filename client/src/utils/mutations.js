@@ -41,3 +41,14 @@ export const REMOVE_GAME = gql`
         }
     }
 `
+
+export const UPDATE_GAME = gql`
+    mutation updateGame($gameId: ID!, $userId: ID!, $mouseDPI: String, $mouseSensitivity: String) {
+        updateGame(gameId: $gameId, userId: $userId, mouseDPI: $mouseDPI, mouseSensitivity: $mouseSensitivity) {
+            _id
+            gameName
+            mouseDPI
+            mouseSensitivity
+        }
+    }
+`
