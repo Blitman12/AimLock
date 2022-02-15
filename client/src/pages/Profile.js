@@ -1,7 +1,6 @@
 import React from 'react'
-import { Redirect, useParams, Link } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import {QUERY_ME} from '../utils/queries'
-import Auth from '../utils/auth';
 import { useQuery } from '@apollo/client';
 import Game from '../components/Game';
 import { Button } from '@mui/material';
@@ -9,13 +8,16 @@ import { Button } from '@mui/material';
 const Profile = () => {
     const {username: userParam} = useParams()
 
-    const {loading, data} = useQuery(QUERY_ME, {variables: {username: userParam}})
+    const {loading, data} = useQuery(QUERY_ME, {
+        variables: {username: userParam},
+        fetchPolicy: "network-only"
+    })
 
-    if(Auth.loggedIn() && Auth.getProfile().data.username === userParam) {
-        return <Redirect to="/profile" /> 
-    }
+    // if(Auth.loggedIn() && Auth.getProfile().data.username === userParam) {
+    //     return <Redirect to="/profile" /> 
+    // }
 
-    const user = data?.me || data?.user || {};
+    const user = data?.me /* || data?.user */ || {};
 
     if (loading) {
         return <div>Loading...</div>
@@ -33,7 +35,7 @@ const Profile = () => {
             <h1>{user.username}`s Games</h1>
             {user.games.length > 0 ? user.games.map(game => {
                 return (
-                    <Game name={game.gameName} key={game.gameName} sens={game.mouseSensitivity} dpi={game.mouseDPI}/>
+                    <Game name={game.gameName} key={game._id} sens={game.mouseSensitivity} dpi={game.mouseDPI} id={game._id} userId={user._id} />
                 )
             }) : (
                 <>

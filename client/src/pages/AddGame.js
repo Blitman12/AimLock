@@ -2,16 +2,14 @@ import React, { useState } from 'react'
 import { TextField, Button } from '@mui/material'
 import { useMutation } from '@apollo/client';
 import { ADD_GAME } from '../utils/mutations';
-import { Redirect } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 export default function AddGame() {
     const [formState, setFormState] = useState({ gameName: '', mouseDPI: '', mouseSensitivity: '' })
-    const [confirm, setConfirm] = useState(false)
     const [addGame, { error }] = useMutation(ADD_GAME)
-
+    const history = useHistory()
 
     const handleChange = event => {
-        setConfirm(false)
         const { name, value } = event.target
         setFormState({
             ...formState,
@@ -26,9 +24,9 @@ export default function AddGame() {
                 variables: { ...formState }
             })
             setFormState({ gameName: '', mouseDPI: '', mouseSensitivity: '' })
-            setConfirm(true)
+            history.push("/profile")
         } catch (error) {
-            console.error(error)
+            console.log(error)
         }
     }
 
@@ -40,8 +38,7 @@ export default function AddGame() {
                 <TextField label="Mouse DPI:" id="mouseDPI" name="mouseDPI" value={formState.mouseDPI} onChange={handleChange}></TextField>
                 <TextField label="Mouse Sensitivity:" id="mouseSensitivity" name="mouseSensitivity" value={formState.mouseSensitivity} onChange={handleChange}></TextField>
                 <Button color="inherit" variant="outlined" type="submit">Submit</Button>
-                {error && <div>login Failed</div>}
-                {confirm && <div>Game Submitted</div>}
+                {error && <div>Something went wrong!</div>}
             </form>
         </div>
 

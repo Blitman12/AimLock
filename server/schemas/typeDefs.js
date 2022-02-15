@@ -25,7 +25,7 @@ const typeDefs = gql`
         me: User
         users: [User]
         user(username: String!): User
-        game(username: String!): [Game]
+        game(_id: ID!): Game
         games: [Game]
     }
 

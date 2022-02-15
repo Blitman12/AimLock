@@ -1,13 +1,13 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const Game = (props) => {
-    console.log(props)
     return (
-        <div>
-            <h1>{props.name}</h1>
-            <p>Mouse Sensitivity: {props.sens}</p>
-            <p>Mouse DPI: {props.dpi}</p>
-        </div>
+        <Link to={{ pathname: "/singleGame", state: {props}}}>
+            <div>
+                <h1>{props.name}</h1>
+            </div>
+        </Link>
     )
 }
 

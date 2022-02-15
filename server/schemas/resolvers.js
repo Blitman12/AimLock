@@ -20,6 +20,9 @@ const resolvers = {
         },
         games: async () => {
             return Game.find()
+        },
+        game: async (_, {_id}) => {
+            return Game.findById(_id)
         }
     },
 
@@ -71,9 +74,9 @@ const resolvers = {
             if (context.user) {
                 const game = await Game.create({ gameName, mouseDPI, mouseSensitivity })
 
-                await User.findByIdAndUpdate(context.user._id, { $addToSet: { games: game._id } }, {new: true})
+                const user = await User.findByIdAndUpdate(context.user._id, { $addToSet: { games: game._id } }, {new: true})
 
-                return game
+                return {game, user}
             }
             throw new AuthenticationError('You need to be logged in!');
         },
