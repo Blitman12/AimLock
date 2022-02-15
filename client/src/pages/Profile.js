@@ -3,7 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import { QUERY_ME } from '../utils/queries'
 import { useQuery } from '@apollo/client';
 import Game from '../components/Game';
-import { Box, Button, List, ListItem } from '@mui/material';
+import { Box, Button, List } from '@mui/material';
 import { makeStyles } from '@mui/styles'
 
 const useStyles = makeStyles({
@@ -53,7 +53,7 @@ const Profile = () => {
             <div className={classes.button}>
                 <Link to="/addGame" className={classes.buttonLink}><Button variant="contained">Add A Game</Button></Link>
             </div>
-            <Box sx={{ width: '100%', maxWidth: 360, bgcolor: 'primary.main' }} className={classes.boxContainer}>
+            <Box sx={{ width: '100%', maxWidth: 200, bgcolor: 'primary.main' }} className={classes.boxContainer}>
                 <nav aria-label="secondary mailbox folders">
                     <List>
                         {user.games.length > 0 ? user.games.map(game => {

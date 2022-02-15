@@ -8,8 +8,17 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import TrackChangesIcon from '@mui/icons-material/TrackChanges';
+import { makeStyles } from '@mui/styles';
+
+const useStyles = makeStyles({
+    links: {
+        textDecoration: 'none',
+        color: 'white'
+    }
+})
 
 const Header = () => {
+    const classes = useStyles()
     const logout = event => {
         event.preventDefault()
         Auth.logout()
@@ -36,13 +45,13 @@ const Header = () => {
                         </Typography>
                         {Auth.loggedIn() ? (
                             <>
-                                <Link to="/profile"><Button color="inherit">Profile</Button></Link>
+                                <Link to="/profile" className={classes.links}><Button color="inherit">Profile</Button></Link>
                                 <Button color="inherit" onClick={logout}>Logout</Button>
                             </>
                         ) : (
                             <>
-                                <Link to="/login"><Button color="inherit">Login</Button></Link>
-                                <Link to="/signup"><Button color="inherit">Signup</Button></Link>
+                                <Link to="/login" className={classes.links}><Button color="inherit" >Login</Button></Link>
+                                <Link to="/signup" className={classes.links}><Button color="inherit">Signup</Button></Link>
                             </>
                         )}
                     </Toolbar>
