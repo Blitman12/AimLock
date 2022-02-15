@@ -23,3 +23,13 @@ export const ADD_USER = gql`
     }
 }
 `
+
+export const ADD_GAME = gql`
+    mutation addGame($gameName: String!, $mouseDPI: String!, $mouseSensitivity: String!) {
+        addGame(gameName: $gameName, mouseDPI: $mouseDPI, mouseSensitivity: $mouseSensitivity) {
+            gameName
+            mouseDPI
+            mouseSensitivity
+        }
+    }
+`

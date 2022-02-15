@@ -71,7 +71,7 @@ const resolvers = {
             if (context.user) {
                 const game = await Game.create({ gameName, mouseDPI, mouseSensitivity })
 
-                await User.findByIdAndUpdate(context.user._id, { $addToSet: { games: game._id } })
+                await User.findByIdAndUpdate(context.user._id, { $addToSet: { games: game._id } }, {new: true})
 
                 return game
             }
