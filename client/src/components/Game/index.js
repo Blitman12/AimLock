@@ -1,4 +1,4 @@
-import { ListItem, ListItemButton, ListItemText } from '@mui/material'
+import { Divider, ListItem, ListItemButton, ListItemText } from '@mui/material'
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { makeStyles } from '@mui/styles'
@@ -15,9 +15,10 @@ const Game = (props) => {
         <Link to={{ pathname: "/singleGame", state: { props } }} className={classes.link}>
             <ListItem disablePadding>
                 <ListItemButton>
-                    <ListItemText primary={props.name} sx={{color: 'text.primary'}}/>
+                    <ListItemText primary={props.name} sx={{ color: 'text.primary' }} />
                 </ListItemButton>
             </ListItem>
+            <Divider />
         </Link>
     )
 }

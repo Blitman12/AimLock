@@ -7,8 +7,8 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
-import TrackChangesIcon from '@mui/icons-material/TrackChanges';
 import { makeStyles } from '@mui/styles';
+import LockIcon from '@mui/icons-material/Lock';
 
 const useStyles = makeStyles({
     links: {
@@ -37,7 +37,7 @@ const Header = () => {
                             sx={{ mr: 2 }}
                         >
                             <Link to="/">
-                                <TrackChangesIcon />
+                                <LockIcon color="action" />
                             </Link>
                         </IconButton>
                         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
@@ -45,7 +45,7 @@ const Header = () => {
                         </Typography>
                         {Auth.loggedIn() ? (
                             <>
-                                <Link to="/profile" className={classes.links}><Button color="inherit">Profile</Button></Link>
+                                <Link to="/profile" className={classes.links}><Button color="inherit">Games</Button></Link>
                                 <Button color="inherit" onClick={logout}>Logout</Button>
                             </>
                         ) : (

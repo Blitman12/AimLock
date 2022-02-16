@@ -1,6 +1,6 @@
 import React from 'react'
 import { makeStyles } from '@mui/styles'
-import LockIcon from '@mui/icons-material/Lock';
+import Logo from '../assets/logo.png'
 
 const useStyles = makeStyles({
     container: {
@@ -14,6 +14,10 @@ const useStyles = makeStyles({
     },
     phrase: {
         fontSize: '25px'
+    },
+    logo: {
+        width: '70px',
+        height: '70px'
     }
 })
 
@@ -21,8 +25,8 @@ function Home() {
     const classes = useStyles()
     return (
         <div className={classes.container}>
-            <h1 className={classes.title}><LockIcon fontSize="large"/> Aim Lock <LockIcon fontSize="large"/></h1>
-            <p className={classes.phrase}>Never forget your settings</p>
+            <h1 className={classes.title}><img alt="target" src={Logo} className={classes.logo}/> Aim Lock</h1>
+            <p className={classes.phrase}>Keeps your aim true</p>
         </div>
     )
 }
